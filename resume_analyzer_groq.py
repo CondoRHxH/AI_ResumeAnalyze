@@ -266,7 +266,7 @@ def main():
             st.markdown('<div class="result-container">', unsafe_allow_html=True)
             st.markdown(st.session_state.analysis_result)
             st.markdown('</div>', unsafe_allow_html=True)
-
+ 
         if st.session_state.analysis_result:
             st.markdown("---")
             st.markdown(section_header("💬 Follow-up Questions", "❓"), unsafe_allow_html=True)
