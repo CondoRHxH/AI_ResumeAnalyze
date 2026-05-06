@@ -87,7 +87,6 @@ def extract_text_from_pdf(pdf_file) -> str:
     os.unlink(tmp_path)
     return text.strip()
 
-
 # ── Groq streaming call ────────────────────────────────────────────────────────
 
 def stream_groq(prompt: str, api_key: str, model: str, placeholder):
