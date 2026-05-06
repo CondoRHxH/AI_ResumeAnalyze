@@ -207,10 +207,10 @@ def main():
         model = st.selectbox(
             "Model",
             options=[
-                "llama-3.1-8b-instant",   # fastest
-                "llama-3.3-70b-versatile", # smartest
-                "mixtral-8x7b-32768",      # good balance
-                "gemma2-9b-it",            # lightweight
+                "llama-3.1-8b-instant",   # The Fastest
+                "llama-3.3-70b-versatile", # The Smartest
+                "mixtral-8x7b-32768",      # Good Balance
+                "gemma2-9b-it",            # Lightweight
             ],
             help="llama-3.1-8b-instant is the fastest for resume analysis",
         )
