@@ -320,6 +320,7 @@ def main():
                 ask_button = st.button("Get Answer 🔍", key="question_btn",
                                        disabled=not (api_key and question))
 
+ 
             if ask_button:
                 st.markdown(section_header("💬 Answer", "✨"), unsafe_allow_html=True)
                 answer_placeholder = st.empty()
