@@ -16,7 +16,7 @@ client = Groq(api_key=API_KEY)
 init_db()
 
 st.set_page_config(
-    page_title="AI Resume Analyzer",
+    page_title="JobFit - AI Resume Analyzer ",
     page_icon="📝",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -35,11 +35,14 @@ for key, default in {
 
 st.markdown("""
 <style>
+    # .stApp {
+    #     background-color: #FF0000;
+    # }
     .stButton button {
         background-color: #4361ee; color: white; border-radius: 5px;
         padding: 10px 20px; font-weight: bold; transition: all 0.3s ease;
     }
-    .stButton button:hover { background-color: #3a56e4; transform: translateY(-2px); }
+    .stButton button:hover { background-color: #1E1E1E; transform: translateY(-2px); }
     .result-container {
         padding: 20px; border-radius: 10px;
         border-left: 5px solid #4361ee; margin: 20px 0;
@@ -185,10 +188,24 @@ def submit_message(api_key, model):
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
+import base64
+def get_base64(img_path):
+        with open(img_path, "rb") as f:
+            return base64.b64encode(f.read()).decode()
 
 def main():
-    st.markdown("<h1 style='text-align: center;'>🚀 AI Resume Analyzer</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; margin-bottom: 30px;'>Powered by Groq — blazing fast AI inference ⚡</p>", unsafe_allow_html=True)
+    
+    
+    img = get_base64("JOB_Fit_Logo-BG.png")
+
+    st.markdown(f"""
+    <div style="display:flex; justify-content:center; align-items:center; gap:120x;">
+        <img src="data:image/jpeg;base64,{img}" width="120"/>
+        <div style="font-size:40px; font-weight:700;">
+            JobFit - AI Resume Analyzer
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
     with st.sidebar:
         st.header("⚙️ Groq Configuration")
@@ -238,8 +255,8 @@ def main():
                         save_cv(resume_text)
                         st.session_state.cv_saved = True
                     
-                    with st.expander("Preview extracted text"):
-                        st.text(resume_text[:400] + "..." if len(resume_text) > 400 else resume_text)
+                    # with st.expander("Preview extracted text"):
+                    #     st.text(resume_text[:400] + "..." if len(resume_text) > 400 else resume_text)
                 except Exception as e:
                     st.error(f"PDF error: {e}")
                     st.session_state.resume_text = ""
