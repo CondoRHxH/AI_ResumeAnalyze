@@ -1,2 +1,5 @@
+# Secrets
 .env
-.InterfacesImages
+
+# UI Assets & Cache
+.InterfacesImages/
