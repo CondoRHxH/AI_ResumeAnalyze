@@ -380,21 +380,16 @@ def submit_chat(api_key, model):
 
 def main():
 
-    # ── Header Centered ─────────────────────────────────────────────────────────
+    # ── Header ─────────────────────────────────────────────────────────────────
     img_b64 = get_base64("JOB_Fit_Logo-BG.png")
-
     if img_b64:
-        st.markdown("""
-            <div style="display:flex; justify-content:center; align-items:center; gap:2px;">
-                <img src="data:image/png;base64,{}" width="180"/>
-                <h2 style="margin:0;">JobFit — AI Resume Analyzer</h2>
-            </div>
-        """.format(img_b64), unsafe_allow_html=True)
+        c1, c2 = st.columns([1, 11])
+        with c1:
+            st.image(f"data:image/png;base64,{img_b64}", width=52)
+        with c2:
+            st.markdown("## JobFit — AI Resume Analyzer")
     else:
-        st.markdown("""
-            <h2 style="text-align:center;">📝 JobFit — AI Resume Analyzer</h2>
-        """, unsafe_allow_html=True)
-
+        st.markdown("## 📝 JobFit — AI Resume Analyzer")
     st.divider()
 
     api_key = API_KEY
@@ -428,8 +423,8 @@ def main():
 
                     st.success(f"✅ {uploaded_file.name}")
                     info = st.session_state.get("candidate_info")
-                    # if info:
-                    #     st.caption(f"👤 {info['name']} · {info['email']} · {info['phone']}")
+                    if info:
+                        st.caption(f"👤 {info['name']} · {info['email']} · {info['phone']}")
 
                 except Exception as e:
                     st.error(f"PDF error: {e}")
@@ -475,7 +470,7 @@ def main():
                 ("job title", st.session_state.job_title),
                 ("job description", st.session_state.job_description),
             ] if not v]
-            # st.caption(f"Still needed: {', '.join(missing)}")
+            st.caption(f"Still needed: {', '.join(missing)}")
 
         _, mid, _ = st.columns([1, 2, 1])
         with mid:
@@ -500,6 +495,8 @@ def main():
                     st.session_state.cv_id,
                     parsed["score"], parsed["feedback"],
                     parsed["points_forts"], parsed["points_faibles"],
+                    st.session_state.job_title,
+                    st.session_state.job_description,
                 )
                 st.session_state.analysis_id = aid
 

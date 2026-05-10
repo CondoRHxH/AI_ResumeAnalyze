@@ -44,6 +44,8 @@ def init_db():
         feedback       TEXT,
         points_forts   TEXT,
         points_faibles TEXT,
+        job_title      TEXT,
+        job_description TEXT,
         timestamp      DATETIME,
         FOREIGN KEY(cv_id) REFERENCES cvs(id)
     )''')
@@ -118,14 +120,15 @@ def save_cv(user_id: int, file_name: str, text: str) -> int:
 # ── Analysis ───────────────────────────────────────────────────────────────────
 
 def save_analysis(cv_id: int, score: int, feedback: str,
-                  points_forts: str, points_faibles: str) -> int:
+                  points_forts: str, points_faibles: str,
+                  job_title: str = "", job_description: str = "") -> int:
     conn = get_conn()
     c = conn.cursor()
     c.execute(
         '''INSERT INTO analysis
-               (cv_id, score, feedback, points_forts, points_faibles, timestamp)
-           VALUES (?, ?, ?, ?, ?, ?)''',
-        (cv_id, score, feedback, points_forts, points_faibles, datetime.now())
+               (cv_id, score, feedback, points_forts, points_faibles, job_title, job_description, timestamp)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?)''',
+        (cv_id, score, feedback, points_forts, points_faibles, job_title, job_description, datetime.now())
     )
     conn.commit()
     analysis_id = c.lastrowid
