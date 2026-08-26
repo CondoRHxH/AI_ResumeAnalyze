@@ -383,13 +383,14 @@ def main():
     # ── Header ─────────────────────────────────────────────────────────────────
     img_b64 = get_base64("JOB_Fit_Logo-BG.png")
     if img_b64:
-        c1, c2 = st.columns([1, 11])
-        with c1:
-            st.image(f"data:image/png;base64,{img_b64}", width=52)
-        with c2:
-            st.markdown("## JobFit — AI Resume Analyzer")
+        st.markdown(f"""
+            <div style="display:flex; justify-content:center; align-items:center; gap:12px; margin-bottom:8px;">
+                <img src="data:image/png;base64,{img_b64}" width="52"/>
+                <h2 style="margin:0;">JobFit — AI Resume Analyzer</h2>
+            </div>
+        """, unsafe_allow_html=True)
     else:
-        st.markdown("## 📝 JobFit — AI Resume Analyzer")
+        st.markdown("<h2 style='text-align:center;'>📝 JobFit — AI Resume Analyzer</h2>", unsafe_allow_html=True)
     st.divider()
 
     api_key = API_KEY
