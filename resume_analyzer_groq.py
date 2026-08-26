@@ -192,7 +192,7 @@ def stream_groq(prompt: str, api_key: str, model: str, placeholder):
             model=model,
             messages=[{"role": "user", "content": prompt}],
             stream=True,
-            max_tokens=1024,
+            max_tokens=2048,
             temperature=0.5,
         ) as stream:
             for chunk in stream:
