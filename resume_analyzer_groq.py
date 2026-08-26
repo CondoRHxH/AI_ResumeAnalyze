@@ -393,7 +393,7 @@ def main():
     st.divider()
 
     api_key = API_KEY
-    model   = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
+    model   = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
 
     # ══════════════════════════════════════════════════════════════════════════
     # Resume Analysis
@@ -422,9 +422,6 @@ def main():
                         st.session_state.cv_saved = True
 
                     st.success(f"✅ {uploaded_file.name}")
-                    info = st.session_state.get("candidate_info")
-                    if info:
-                        st.caption(f"👤 {info['name']} · {info['email']} · {info['phone']}")
 
                 except Exception as e:
                     st.error(f"PDF error: {e}")
